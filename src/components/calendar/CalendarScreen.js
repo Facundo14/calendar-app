@@ -35,6 +35,7 @@ const localizer = momentLocalizer(moment)
 export const CalendarScreen = () => {
 
   const dispatch = useDispatch();
+
   const { events, activeEvent } = useSelector(state => state.calendar);
 
   const [lastView, setLastView] = useState( localStorage.getItem('lastView') || 'month');
