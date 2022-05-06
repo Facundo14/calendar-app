@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 
 import { uiCloseModal } from '../../actions/ui';
-import { eventAddNew, eventClearActiveEvent, eventUpdated } from '../../actions/events';
+import { eventClearActiveEvent, eventStarAddtNew, eventStartUpdate } from '../../actions/events';
 
 import Modal from 'react-modal';
 import moment from 'moment';
@@ -113,18 +113,11 @@ export const CalendarModal = () => {
         //TODO: Enviar el formulario a base de datos
         
         if(activeEvent){
-            dispatch(eventUpdated(formValues));
+            dispatch(eventStartUpdate(formValues));
 
         }else{
             
-            dispatch( eventAddNew({
-                ...formValues,
-                id: new Date().getTime(),
-                user: {
-                    _id: '123',
-                    name: 'Facundo',
-                }
-            }) );
+            dispatch( eventStarAddtNew( formValues ));
         }
         setTileValid(true);
         closeModal();

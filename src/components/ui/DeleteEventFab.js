@@ -1,13 +1,26 @@
 import React from 'react'
 import { useDispatch } from 'react-redux';
-import { eventDeleted } from '../../actions/events';
+import Swal from 'sweetalert2';
+import { eventStartDelete } from '../../actions/events';
 
 export const DeleteEventFab = () => {
 
     const dispatch = useDispatch();
 
     const handleDelete = () => {
-        dispatch(eventDeleted());
+      
+      Swal.fire({
+        title: 'Estas seguro?',
+        text: "No podras revertir esto!",
+        icon: 'warning',
+        showDenyButton: true,
+        confirmButtonText: 'Si, eliminar!',
+        denyButtonText: 'Cancelar',
+      }).then((result) => {
+        if (result.isConfirmed) {
+         dispatch(eventStartDelete());
+        } 
+      });
     }
 
   return (
